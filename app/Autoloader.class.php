@@ -1,12 +1,17 @@
 <?php
+
+	namespace App;
+
 	class Autoloader{
 		
 		static function register(){
 			spl_autoload_register(array(__CLASS__, 'autoload'));
 		}
 
-		static function autoload($class_name){
-			require 'app/' . $class_name . '.class.php';
+		static function autoload($class){
+			$class = str_replace('App\\', '', $class);
+			$class = str_replace('\\', '/', $class);
+			require 'app/' . $class . '.class.php';
 		}
 	}
 ?>
