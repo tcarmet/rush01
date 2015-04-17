@@ -1,0 +1,3 @@
+# rush01
+
+#TU FAIS MEME PAS UN README OHHH!
