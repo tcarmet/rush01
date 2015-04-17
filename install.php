@@ -13,7 +13,7 @@
     else
     	echo "<span style=\"color: red;\">Error creating table players</span><br />";
     
-    if ($bdd->query("CREATE TABLE IF NOT EXISTS `Players_grades` (`id_grade` int(11) NOT NULL AUTO_INCREMENT,`name` varchar(50) NOT NULL,PRIMARY KEY (`id_grade`))"))
+    if ($bdd->query("CREATE TABLE IF NOT EXISTS `Players_grades` (`id_grade` int(11) NOT NULL AUTO_INCREMENT,`name` varchar(50) NOT NULL, `min_points` int(11) NOT NULL,PRIMARY KEY (`id_grade`))"))
     	echo "Table players_grades created successfully.<br />";
     else
     	echo "<span style=\"color: red;\">Error creating table players_grades</span><br />";
@@ -87,4 +87,14 @@
     	echo "Table play_in created successfully.<br />";
     else
     	echo "<span style=\"color: red;\">Error creating table play_in</span><br />";
+
+    if ($bdd->query("INSERT INTO `Administrators_ranks` VALUES ('', 'Dieu'), ('', 'Prophette'), ('', 'Ange')"))
+    	echo "Insert into administrators_ranks is good.<br />";
+    else
+    	echo "<span style=\"color: red;\">Error when insert into administrators_ranks</span><br />";
+
+    if ($bdd->query("INSERT INTO `Players_grades` VALUES ('', 'Amiral', '4000'), ('', 'Capitaine', '3300'), ('', 'Commandeur', '2500'), ('', 'Lieutenant Commandeur', '1800'), ('', 'Lieutenant', '1200'), ('', 'Sous-Lieutenant', '700'), ('', 'Enseigne', '300'), ('', 'Cadet', '0')"))
+    	echo "Insert into players_grades is good.<br />";
+    else
+    	echo "<span style=\"color: red;\">Error when insert into players_grades</span><br />";
 ?>

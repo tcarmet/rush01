@@ -34,7 +34,7 @@
 		}
 
 		public function query_select($statement){
-			$req = $this->getPDO()>query($statement);
+			$req = $this->getPDO()->query($statement);
 			$data = $res->fetchAll(PDO::FECTH_OBJ);
 			return $data;
 		}
