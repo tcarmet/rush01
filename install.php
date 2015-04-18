@@ -53,7 +53,7 @@
     else
     	echo "<span style=\"color: red;\">Error creating table games</span><br />";
 
-    if ($bdd->query("CREATE TABLE IF NOT EXISTS `Type_of_games` (`id_type_game` int(11) NOT NULL AUTO_INCREMENT,`name` varchar(100) NOT NULL,`nbr_player` int(11) NOT NULL,PRIMARY KEY (`id_type_game`))"))
+    if ($bdd->query("CREATE TABLE IF NOT EXISTS `Type_of_games` (`id_type_game` int(11) NOT NULL AUTO_INCREMENT,`name` varchar(100) NOT NULL,`nbr_player` int(11) NOT NULL,`nbr_points` int(11) NOT NULL,PRIMARY KEY (`id_type_game`))"))
     	echo "Table type_of_games created successfully.<br />";
     else
     	echo "<span style=\"color: red;\">Error creating table type_of_games</span><br />";
@@ -97,4 +97,9 @@
     	echo "Insert into players_grades is good.<br />";
     else
     	echo "<span style=\"color: red;\">Error when insert into players_grades</span><br />";
+
+    if ($bdd->query("INSERT INTO `Type_of_games` VALUES ('', 'Simple', '2', '500')"))
+        echo "Insert into type_of_games is good.<br />";
+    else
+        echo "<span style=\"color: red;\">Error when insert into type_of_games</span><br />";
 ?>

@@ -47,6 +47,10 @@
 			return $data;
 		}
 
+		public function last_id(){
+			return $this->getPDO()->lastInsertId();
+		}
+
 	}
 
 ?>
