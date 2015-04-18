@@ -23,10 +23,10 @@
 			return 0;
 	}
 
-	function create_map($bdd2, $id){
+	function create_map($bdd2, $id_game){
 		$id = protect_sql($id, "intval");
 
-		$name = $id."_map_game";
+		$name = $id_game."_map_game";
 		$sql = "CREATE TABLE IF NOT EXISTS `".$name."` (`id_object` int(11) NOT NULL AUTO_INCREMENT, `type_object` enum('ship', 'barrier') NOT NULL, `position_x` int(11) NOT NULL, `position_y` int(11) NOT NULL, `width` int(11) NOT NULL, `lenght` int(11) NOT NULL, `id_owner` int(11) NOT NULL, id_ship int(11) NOT NULL, PRIMARY KEY (`id_object`))";
 		if ($bdd2->query($sql))
 			return 1;
@@ -34,13 +34,35 @@
 			return 0;
 	}
 
-	function create_event_table($bdd2, $id){
+	function create_event_table($bdd2, $id_game){
 		$id = protect_sql($id, "intval");
 
-		$name = $id."_event_game";
+		$name = $id_game."_event_game";
 		$sql = "CREATE TABLE IF NOT EXISTS `".$name."` (`id_event` int(11) NOT NULL AUTO_INCREMENT, `message` text NOT NULL, date_hour datetime NOT NULL, id_player int(11) NOT NULL, PRIMARY KEY (`id_event`))";
 		if ($bdd2->query($sql))
 			return 1;
+		else
+			return 0;
+	}
+
+	function create_event($bdd2, $id_game, $content, $id_player){
+		$id = protect_sql($id, "intval");
+
+		$name = $id_game."_event_game";
+		$sql = "INSERT INTO `".$name."` VALUES ('', '".$content."', NOW(), '".$id_player."')";
+		if ($data = $bdd2->query($sql))
+			return $data;
+		else
+			return 0;
+	}
+
+	function select_event($bdd2, $id_game, $timestamp){
+		$id = protect_sql($id, "intval");
+
+		$name = $id_game."_event_game";
+		$sql = "SELECT * FROM `".$name."` WHERE ".$timestamp." < date_hour";
+		if ($data = $bdd2->query_select($sql))
+			return $data;
 		else
 			return 0;
 	}
@@ -103,6 +125,17 @@
 		$id_game = protect_sql($id_game, "intval");
 
 		$name = $id_game."_map_game";
+		$sql = "DROP TABLE `".$name."`";
+		if ($bdd2->query($sql))
+			return 1;
+		else
+			return 0;
+	}
+
+	function delete_event($bdd2, $id_game){
+		$id_game = protect_sql($id_game, "intval");
+
+		$name = $id_game."_event_game";
 		$sql = "DROP TABLE `".$name."`";
 		if ($bdd2->query($sql))
 			return 1;
