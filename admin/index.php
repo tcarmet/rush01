@@ -2,7 +2,7 @@
 session_start();
 
 /* Fichier a include */
-require ('app/Autoloader.class.php');
+require ('../app/Autoloader.class.php');
 	App\Autoloader::register();
 	$config = App\Config::getInstance();
 
