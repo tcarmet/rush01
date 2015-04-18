@@ -15,7 +15,7 @@
 
 		public static function getInstance_bdd($db_name, $db_user = 'root', $db_pass = '123456', $db_host = 'localhost') {
 			if (is_null(self::$_instance)) {
-				self::$_instance = new Database($db_name, $db_user = 'root', $db_pass = '123456', $db_host = 'localhost');
+				self::$_instance = new Database($db_name, $db_user, $db_pass, $db_host);
 			}
 			return self::$_instance;
 		}

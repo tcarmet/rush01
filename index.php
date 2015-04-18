@@ -7,8 +7,8 @@
     $bdd = App\database\Database::getInstance_bdd($config->get("db_name"), $config->get("db_user"), $config->get("db_pass"), $config->get("db_host"));
 	require ('functions.php');
 
-    if ($data = select_all_ranks($bdd))
-    	print_r($data);
+    if (create_user($bdd, "tcoppin", "tcoppin@gmail.com", "123456"))
+    	echo "ok";
     else
     	echo "nope";
 ?>
