@@ -13,7 +13,7 @@
 		return ($var);
 	}
 
-	require ('functions/players.php');
-    require ('functions/admins.php');
-    require ('functions/games.php');
+	require ('players.php');
+    require ('admins.php');
+    require ('games.php');
 ?>
