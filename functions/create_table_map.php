@@ -1,16 +1,16 @@
 <?php
 
-create_game($bdd2, "Test", 1, 1);
+// create_game($bdd2, "Test", 1, 1);
 
 
 // GENERATE BARRIER
-for ($i = 0; $i < 10; $i++) {
-	insert_into_map($bdd, 1, 'barrier',
-		mt_rand(0, 150), mt_rand(0, 100), mt_rand(3, 15), mt_rand(3, 15), 0);
-}
+// for ($i = 0; $i < 10; $i++) {
+// 	insert_into_map($bdd, 1, 'barrier',
+// 		mt_rand(0, 150), mt_rand(0, 100), mt_rand(3, 15), mt_rand(3, 15), 0);
+// }
 
-insert_into_map($bdd, 1, 'ship', 1, 1, 10, 8, 1);
-insert_into_map($bdd, 1, 'ship', 100, 10, 10, 8, 1);
+// insert_into_map($bdd, 1, 'ship', 1, 1, 10, 8, 1);
+// insert_into_map($bdd, 1, 'ship', 100, 10, 10, 8, 1);
 
 
 $data = select_all_into_map($bdd, 1);
