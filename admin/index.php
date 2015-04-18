@@ -21,12 +21,25 @@ require ('../app/Autoloader.class.php');
 		<div id="header">
 			<p class="ecrit"><!-- Contenu du Header --></p>
 			<div id="membre">
-				<p class="ecrit"><!-- Espace membre --></p>
+				<p class="ecrit"><!-- Espace membre -->
+                <?php
+                    include("./inclures/login_admin.php");
+                ?>
+                </p>
 			</div>
 		</div>
 		<div id="general">
 			<div id="content">
-				<p class="ecrit"><!-- Contenu --></p>
+				<p class="ecrit"><!-- Contenu -->
+                <?php
+                    if (isset($_GET['pg']) && $_GET['pg'] == "list_user")
+                        include("./inclures/list_user.php");
+                    else if (isset($_GET['pg'])  && $_GET['pg'] == "list_admin")
+                        include("./inclures/list_admin.php");
+                    else if (isset($_GET['pg'])  && $_GET['pg'] == "create_admin")
+                        include("./inclures/create_admin.php");
+                ?>
+                </p>
 			</div>
 			<div id="menu">
 				<p class="ecrit"><!-- Menu -->
