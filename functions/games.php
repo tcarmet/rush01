@@ -11,7 +11,16 @@
 	function select_game($bdd2, $id){
 		$id = protect_sql($id, "intval");
 
-		//pour type de partie
+		$sql = "SELECT * FROM games WHERE id_game = ".$id."";
+		if ($data = $bdd2->query_select($sql))
+		{
+			if ($type = select_tog($bdd2, $id_type)){
+	    		return $type[0]['nbr_points'];
+			else
+				return 0;
+		}
+		else
+			return 0;
 	}
 
 	function create_map($bdd2, $id){
@@ -57,7 +66,12 @@
 		$id_game = protect_sql($id_game, "intval");
 		$id_player = protect_sql($id_player, "intval");
 
-
+		if ($points = select_game($bdd2, $id_game))
+		{
+			$sql = "INSERT INTO `play_in` VALUES ('".$id_creator."', '".$last_id."', '".$points."', '1')";
+		}
+		else
+			return 0;
 	}
 
 	function delete_map($bdd2, $id_game){
