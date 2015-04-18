@@ -102,4 +102,14 @@
         echo "Insert into type_of_games is good.<br />";
     else
         echo "<span style=\"color: red;\">Error when insert into type_of_games</span><br />";
+
+    if ($bdd->query("INSERT INTO `Administrators` VALUES ('', 'root', 'root@root.root', 'root', '1')"))
+        echo "Insert into administrators is good.<br />";
+    else
+        echo "<span style=\"color: red;\">Error when insert into administrators</span><br />";
+
+    if ($bdd->query("INSERT INTO `Players` VALUES ('', 'root', 'root@root.root', 'root', 0), ('', 'tcoppin', 'tcoppin@tcoppin.tcoppin', '123456', 0)"))
+        echo "Insert into players is good.<br />";
+    else
+        echo "<span style=\"color: red;\">Error when insert into players</span><br />";
 ?>

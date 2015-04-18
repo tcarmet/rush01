@@ -14,8 +14,8 @@
 		$sql = "SELECT * FROM games WHERE id_game = ".$id."";
 		if ($data = $bdd2->query_select($sql))
 		{
-			if ($type = select_tog($bdd2, $id_type)){
-	    		return $type[0]['nbr_points'];
+			if ($type = select_tog($bdd2, $data[0]['id_type']))
+	    		return $type[0];
 			else
 				return 0;
 		}
@@ -66,9 +66,23 @@
 		$id_game = protect_sql($id_game, "intval");
 		$id_player = protect_sql($id_player, "intval");
 
-		if ($points = select_game($bdd2, $id_game))
+		if ($type = select_game($bdd2, $id_game))
 		{
-			$sql = "INSERT INTO `play_in` VALUES ('".$id_creator."', '".$last_id."', '".$points."', '1')";
+			$sql = "SELECT COUNT(*) AS `nbr` FROM `play_in` WHERE id_game = '".$id_game."'";
+			if ($data = $bdd2->query_select($sql))
+			{
+				if ($data[0]['nbr'] < $type['nbr_player'])
+				{
+					$data[0]['nbr']++;
+					$sql2 = "INSERT INTO `play_in` VALUES ('".$id_player."', '".$id_game."', '".$type['nbr_points']."', '".$data[0]['nbr']."')";
+					if ($bdd2->query($sql2))
+						return 1;
+					else
+						return 0;					
+				}
+			}
+			else
+				return 0;
 		}
 		else
 			return 0;
