@@ -112,9 +112,4 @@
         echo "Insert into players is good.<br />";
     else
         echo "<span style=\"color: red;\">Error when insert into players</span><br />";
-
-    if ($bdd->query("INSERT INTO `Weapons` VALUES ('', 'Test1', '...', 5, 2, 5, 8, 1), ('', 'Test2', '...', 3, 6, 8, 10, 2), ('', 'Test3', '...', 2, 4, 7, 11, 3)"))
-        echo "Insert into players is good.<br />";
-    else
-        echo "<span style=\"color: red;\">Error when insert into players</span><br />";
 ?>
