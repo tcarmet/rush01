@@ -15,4 +15,5 @@
 
 	require ('functions/players.php');
     require ('functions/admins.php');
+    require ('functions/games.php');
 ?>

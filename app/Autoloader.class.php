@@ -11,7 +11,7 @@
 		static function autoload($class){
 			$class = str_replace('App\\', '', $class);
 			$class = str_replace('\\', '/', $class);
-			require 'app/' . $class . '.class.php';
+			require dirname(__DIR__) . '/app/' . $class . '.class.php';
 		}
 	}
 ?>

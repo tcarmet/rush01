@@ -48,7 +48,7 @@
     else
     	echo "<span style=\"color: red;\">Error creating table bonus</span><br />";
 
-    if ($bdd->query("CREATE TABLE IF NOT EXISTS `Games` (`id_game` int(11) NOT NULL AUTO_INCREMENT,`name` varchar(50) NOT NULL,`creation_date` date NOT NULL,`id_type` int(11) NOT NULL,PRIMARY KEY (`id_game`))"))
+    if ($bdd->query("CREATE TABLE IF NOT EXISTS `Games` (`id_game` int(11) NOT NULL AUTO_INCREMENT,`name` varchar(50) NOT NULL,`creation_date` datetime NOT NULL,`id_type` int(11) NOT NULL, `state` enum('En attente de Joueurs', 'En cours', 'Finie') NOT NULL DEFAULT 'En attente de Joueurs',PRIMARY KEY (`id_game`))"))
     	echo "Table games created successfully.<br />";
     else
     	echo "<span style=\"color: red;\">Error creating table games</span><br />";
