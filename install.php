@@ -6,7 +6,7 @@
     $conn = mysqli_connect($config->get("db_host"), $config->get("db_user"), $config->get("db_pass"));
     $sql = "CREATE DATABASE IF NOT EXISTS `Rush01`";
     mysqli_query($conn, $sql);
-    $bdd = new App\database\Database($config->get("db_name"), $config->get("db_user"), $config->get("db_pass"), $config->get("db_host"));
+    $bdd = App\database\Database::getInstance_bdd($config->get("db_name"), $config->get("db_user"), $config->get("db_pass"), $config->get("db_host"));
     
     if ($bdd->query("CREATE TABLE IF NOT EXISTS `Players` (`id_player` int(11) NOT NULL AUTO_INCREMENT,`login` varchar(50) NOT NULL,`email` varchar(255) NOT NULL,`password` text NOT NULL,`nbr_points` int(11) NOT NULL DEFAULT 0,PRIMARY KEY (`id_player`))"))
     	echo "Table players created successfully.<br />";
