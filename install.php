@@ -8,7 +8,7 @@
     mysqli_query($conn, $sql);
     $bdd = App\database\Database::getInstance_bdd($config->get("db_name"), $config->get("db_user"), $config->get("db_pass"), $config->get("db_host"));
     
-    if ($bdd->query("CREATE TABLE IF NOT EXISTS `Players` (`id_player` int(11) NOT NULL AUTO_INCREMENT,`login` varchar(50) NOT NULL,`email` varchar(255) NOT NULL,`password` text NOT NULL,`nbr_points` int(11) NOT NULL DEFAULT 0,`status` enum('0', '1', '2') NOT NULL,PRIMARY KEY (`id_player`), UNIQUE (`login`), UNIQUE (`email`))"))
+    if ($bdd->query("CREATE TABLE IF NOT EXISTS `Players` (`id_player` int(11) NOT NULL AUTO_INCREMENT,`login` varchar(50) NOT NULL,`email` varchar(255) NOT NULL,`password` text NOT NULL,`nbr_points` int(11) NOT NULL DEFAULT 0,`status` enum('0', '1', '2') NOT NULL DEFAULT 2,PRIMARY KEY (`id_player`), UNIQUE (`login`), UNIQUE (`email`))"))
     	echo "Table players created successfully.<br />";
     else
     	echo "<span style=\"color: red;\">Error creating table players</span><br />";
@@ -108,7 +108,7 @@
     else
         echo "<span style=\"color: red;\">Error when insert into administrators</span><br />";
 
-    if ($bdd->query("INSERT INTO `Players` VALUES ('', 'root', 'root@W42K.com', 'root', 0), ('', 'tcarmet', 'tcarmet@W42K.com', '123456', 0)"))
+    if ($bdd->query("INSERT INTO `Players` VALUES ('', 'root', 'root@W42K.com', 'root', 0, 2), ('', 'tcarmet', 'tcarmet@W42K.com', '123456', 0, 2)"))
         echo "Insert into players is good.<br />";
     else
         echo "<span style=\"color: red;\">Error when insert into players</span><br />";
