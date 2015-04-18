@@ -8,12 +8,12 @@
     mysqli_query($conn, $sql);
     $bdd = new App\database\Database($config->get("db_name"), $config->get("db_user"), $config->get("db_pass"), $config->get("db_host"));
     
-    if ($bdd->query("CREATE TABLE IF NOT EXISTS `Players` (`id_player` int(11) NOT NULL AUTO_INCREMENT,`login` varchar(50) NOT NULL,`email` varchar(255) NOT NULL,`password` text NOT NULL,`id_grade` int(11) NOT NULL DEFAULT 1,`nbr_points` int(11) NOT NULL DEFAULT 0,PRIMARY KEY (`id_player`))"))
+    if ($bdd->query("CREATE TABLE IF NOT EXISTS `Players` (`id_player` int(11) NOT NULL AUTO_INCREMENT,`login` varchar(50) NOT NULL,`email` varchar(255) NOT NULL,`password` text NOT NULL,`nbr_points` int(11) NOT NULL DEFAULT 0,PRIMARY KEY (`id_player`))"))
     	echo "Table players created successfully.<br />";
     else
     	echo "<span style=\"color: red;\">Error creating table players</span><br />";
     
-    if ($bdd->query("CREATE TABLE IF NOT EXISTS `Players_grades` (`id_grade` int(11) NOT NULL AUTO_INCREMENT,`name` varchar(50) NOT NULL, `min_points` int(11) NOT NULL,PRIMARY KEY (`id_grade`))"))
+    if ($bdd->query("CREATE TABLE IF NOT EXISTS `Players_grades` (`id_grade` int(11) NOT NULL AUTO_INCREMENT,`name` varchar(50) NOT NULL, `min_points` int(11) NOT NULL, `max_points` int(11) NOT NULL,PRIMARY KEY (`id_grade`))"))
     	echo "Table players_grades created successfully.<br />";
     else
     	echo "<span style=\"color: red;\">Error creating table players_grades</span><br />";
@@ -93,7 +93,7 @@
     else
     	echo "<span style=\"color: red;\">Error when insert into administrators_ranks</span><br />";
 
-    if ($bdd->query("INSERT INTO `Players_grades` VALUES ('', 'Amiral', '4000'), ('', 'Capitaine', '3300'), ('', 'Commandeur', '2500'), ('', 'Lieutenant Commandeur', '1800'), ('', 'Lieutenant', '1200'), ('', 'Sous-Lieutenant', '700'), ('', 'Enseigne', '300'), ('', 'Cadet', '0')"))
+    if ($bdd->query("INSERT INTO `Players_grades` VALUES ('', 'Amiral', '4000', '2147483647'), ('', 'Capitaine', '3300', '4000'), ('', 'Commandeur', '2500', '3300'), ('', 'Lieutenant Commandeur', '1800', '2500'), ('', 'Lieutenant', '1200', '1800'), ('', 'Sous-Lieutenant', '700', '1200'), ('', 'Enseigne', '300', '700'), ('', 'Cadet', '0', '300')"))
     	echo "Insert into players_grades is good.<br />";
     else
     	echo "<span style=\"color: red;\">Error when insert into players_grades</span><br />";
