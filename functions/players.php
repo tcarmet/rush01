@@ -5,7 +5,7 @@
 		$password = protect_sql($password, "none");
 
     	$password = my_crypt($password, $login);
-    	$sql = "INSERT INTO `players` VALUES ('', '".$login."', '".$email."', '".$password."', 0)";
+    	$sql = "INSERT INTO `players` VALUES ('', '".$login."', '".$email."', '".$password."', 0, 0)";
         if ($bdd2->query($sql))
     		return 1;
     	else

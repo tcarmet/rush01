@@ -34,6 +34,17 @@
 			return 0;
 	}
 
+	function create_event_table($bdd2, $id){
+		$id = protect_sql($id, "intval");
+
+		$name = $id."_event_game";
+		$sql = "CREATE TABLE IF NOT EXISTS `".$name."` (`id_event` int(11) NOT NULL AUTO_INCREMENT, `message` text NOT NULL, date_hour datetime NOT NULL, id_player int(11) NOT NULL, PRIMARY KEY (`id_event`))";
+		if ($bdd2->query($sql))
+			return 1;
+		else
+			return 0;
+	}
+
 	function create_game($bdd2, $name, $id_type, $id_creator){
 		$name = protect_sql($name, "none");
 		$id_type = protect_sql($id_type, "intval");
@@ -47,7 +58,7 @@
 	    		$sql2 = "INSERT INTO `play_in` VALUES ('".$id_creator."', '".$last_id."', '".$type[0]['nbr_points']."', '1')";
 	    		if ($bdd2->query($sql2))
 	        	{
-	        		if (create_map($bdd2, $last_id))
+	        		if (create_map($bdd2, $last_id) && create_event_table($bdd2, $last_id))
 	    				return $last_id;
 	    			else
 	    				return 0;
@@ -165,5 +176,13 @@
 	        return $data[0];
         else
         	return 0;
+	}
+
+	function select_all_games($bdd2){
+		$sql = "SELECT * FROM `games`";
+		if ($data = $bdd2->query_select($sql))
+			return $data;
+		else
+			return 0;
 	}
 ?>
