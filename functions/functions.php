@@ -16,4 +16,5 @@
 	require ('players.php');
     require ('admins.php');
     require ('games.php');
+    require ('composants.php');
 ?>
