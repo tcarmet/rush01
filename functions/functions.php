@@ -5,7 +5,7 @@
 	}
 
 	function protect_sql($var, $method) {
-		mysqli_real_escape_string($var);
+		// mysqli_real_escape_string($var);
 		if ($method === "intval")
 		{
 			$var = intval($var);

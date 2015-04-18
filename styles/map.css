@@ -1,0 +1,10 @@
+table {
+	position: absolute;
+	left: 20%;
+}
+
+tr, td {
+	border-style: solid;
+	border-width: 1px;
+	padding: 3px;
+}
