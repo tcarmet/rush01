@@ -17,6 +17,7 @@
 <select name="rank" id="Rank" required>
 <?php
 	$ranks = select_all_ranks($bdd);
+	sort($ranks);
 	foreach ($ranks as $key => $value) {
 		echo "<option value=\"".$ranks[$key]['id_rank']."\">".$ranks[$key]['name']."</option>"; 
 	}
