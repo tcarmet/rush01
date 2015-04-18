@@ -8,42 +8,42 @@
     mysqli_query($conn, $sql);
     $bdd = App\database\Database::getInstance_bdd($config->get("db_name"), $config->get("db_user"), $config->get("db_pass"), $config->get("db_host"));
     
-    if ($bdd->query("CREATE TABLE IF NOT EXISTS `Players` (`id_player` int(11) NOT NULL AUTO_INCREMENT,`login` varchar(50) NOT NULL,`email` varchar(255) NOT NULL,`password` text NOT NULL,`nbr_points` int(11) NOT NULL DEFAULT 0,PRIMARY KEY (`id_player`))"))
+    if ($bdd->query("CREATE TABLE IF NOT EXISTS `Players` (`id_player` int(11) NOT NULL AUTO_INCREMENT,`login` varchar(50) NOT NULL,`email` varchar(255) NOT NULL,`password` text NOT NULL,`nbr_points` int(11) NOT NULL DEFAULT 0,PRIMARY KEY (`id_player`), UNIQUE (`login`), UNIQUE (`email`))"))
     	echo "Table players created successfully.<br />";
     else
     	echo "<span style=\"color: red;\">Error creating table players</span><br />";
     
-    if ($bdd->query("CREATE TABLE IF NOT EXISTS `Players_grades` (`id_grade` int(11) NOT NULL AUTO_INCREMENT,`name` varchar(50) NOT NULL, `min_points` int(11) NOT NULL, `max_points` int(11) NOT NULL,PRIMARY KEY (`id_grade`))"))
+    if ($bdd->query("CREATE TABLE IF NOT EXISTS `Players_grades` (`id_grade` int(11) NOT NULL AUTO_INCREMENT,`name` varchar(50) NOT NULL, `min_points` int(11) NOT NULL, `max_points` int(11) NOT NULL,PRIMARY KEY (`id_grade`), UNIQUE (`name`))"))
     	echo "Table players_grades created successfully.<br />";
     else
     	echo "<span style=\"color: red;\">Error creating table players_grades</span><br />";
     
-    if ($bdd->query("CREATE TABLE IF NOT EXISTS `Administrators` (`id_admin` int(11) NOT NULL AUTO_INCREMENT,`login` varchar(50) NOT NULL,`email` varchar(255) NOT NULL,`password` text NOT NULL,`id_ranks` int(11) NOT NULL DEFAULT 1,PRIMARY KEY (`id_admin`))"))
+    if ($bdd->query("CREATE TABLE IF NOT EXISTS `Administrators` (`id_admin` int(11) NOT NULL AUTO_INCREMENT,`login` varchar(50) NOT NULL,`email` varchar(255) NOT NULL,`password` text NOT NULL,`id_ranks` int(11) NOT NULL DEFAULT 1,PRIMARY KEY (`id_admin`), UNIQUE (`login`), UNIQUE (`email`))"))
     	echo "Table administrators created successfully.<br />";
     else
     	echo "<span style=\"color: red;\">Error creating table administrators</span><br />";
     
-    if ($bdd->query("CREATE TABLE IF NOT EXISTS `Administrators_ranks` (`id_rank` int(11) NOT NULL AUTO_INCREMENT,`name` varchar(50) NOT NULL,PRIMARY KEY (`id_rank`))"))
+    if ($bdd->query("CREATE TABLE IF NOT EXISTS `Administrators_ranks` (`id_rank` int(11) NOT NULL AUTO_INCREMENT,`name` varchar(50) NOT NULL,PRIMARY KEY (`id_rank`), UNIQUE (`name`))"))
     	echo "Table administrators_ranks created successfully.<br />";
     else
     	echo "<span style=\"color: red;\">Error creating table administrators_ranks</span><br />";
     
-    if ($bdd->query("CREATE TABLE IF NOT EXISTS `Factions` (`id_faction` int(11) NOT NULL AUTO_INCREMENT,`name` varchar(50) NOT NULL,`color` varchar(6) NOT NULL,PRIMARY KEY (`id_faction`))"))
+    if ($bdd->query("CREATE TABLE IF NOT EXISTS `Factions` (`id_faction` int(11) NOT NULL AUTO_INCREMENT,`name` varchar(50) NOT NULL,`color` varchar(6) NOT NULL,PRIMARY KEY (`id_faction`), UNIQUE (`name`))"))
     	echo "Table factions created successfully.<br />";
     else
     	echo "<span style=\"color: red;\">Error creating table factions</span><br />";
 
-    if ($bdd->query("CREATE TABLE IF NOT EXISTS `Ships` (`id_ship` int(11) NOT NULL AUTO_INCREMENT,`name` varchar(50) NOT NULL,`description` text NOT NULL,`width` int(11) NOT NULL,`length` int(11) NOT NULL,`speed` int(11) NOT NULL,`life_points` int(11) NOT NULL,`power_points` int(11) NOT NULL,`moves` int(11) NOT NULL,`protect_points` int(11) NOT NULL,`value_points` int(11) NOT NULL,`id_faction` int(11) NOT NULL,PRIMARY KEY (`id_ship`))"))
+    if ($bdd->query("CREATE TABLE IF NOT EXISTS `Ships` (`id_ship` int(11) NOT NULL AUTO_INCREMENT,`name` varchar(50) NOT NULL,`description` text NOT NULL,`width` int(11) NOT NULL,`length` int(11) NOT NULL,`speed` int(11) NOT NULL,`life_points` int(11) NOT NULL,`power_points` int(11) NOT NULL,`moves` int(11) NOT NULL,`protect_points` int(11) NOT NULL,`value_points` int(11) NOT NULL,`id_faction` int(11) NOT NULL,PRIMARY KEY (`id_ship`), UNIQUE (`name`))"))
     	echo "Table ships created successfully.<br />";
     else
     	echo "<span style=\"color: red;\">Error creating table ships</span><br />";
 
-    if ($bdd->query("CREATE TABLE IF NOT EXISTS `Weapons` (`id_weapon` int(11) NOT NULL AUTO_INCREMENT,`name` varchar(50) NOT NULL,`description` text NOT NULL,`loads` int(11) NOT NULL,`short_range` int(11) NOT NULL,`middle_range` int(11) NOT NULL,`long_range` int(11) NOT NULL,`effect_area` int(11) NOT NULL,PRIMARY KEY (`id_weapon`))"))
+    if ($bdd->query("CREATE TABLE IF NOT EXISTS `Weapons` (`id_weapon` int(11) NOT NULL AUTO_INCREMENT,`name` varchar(50) NOT NULL,`description` text NOT NULL,`loads` int(11) NOT NULL,`short_range` int(11) NOT NULL,`middle_range` int(11) NOT NULL,`long_range` int(11) NOT NULL,`effect_area` int(11) NOT NULL,PRIMARY KEY (`id_weapon`), UNIQUE (`name`))"))
     	echo "Table weapons created successfully.<br />";
     else
     	echo "<span style=\"color: red;\">Error creating table weapons</span><br />";
 
-    if ($bdd->query("CREATE TABLE IF NOT EXISTS `Bonus` (`id_bonus` int(11) NOT NULL AUTO_INCREMENT,`name` varchar(50) NOT NULL,`description` text NOT NULL,`effect` varchar(255) NOT NULL,`type_of_effect` enum('ship', 'weapon') NOT NULL,PRIMARY KEY (`id_bonus`))"))
+    if ($bdd->query("CREATE TABLE IF NOT EXISTS `Bonus` (`id_bonus` int(11) NOT NULL AUTO_INCREMENT,`name` varchar(50) NOT NULL,`description` text NOT NULL,`effect` varchar(255) NOT NULL,`type_of_effect` enum('ship', 'weapon') NOT NULL,PRIMARY KEY (`id_bonus`), UNIQUE (`name`))"))
     	echo "Table bonus created successfully.<br />";
     else
     	echo "<span style=\"color: red;\">Error creating table bonus</span><br />";
@@ -53,7 +53,7 @@
     else
     	echo "<span style=\"color: red;\">Error creating table games</span><br />";
 
-    if ($bdd->query("CREATE TABLE IF NOT EXISTS `Type_of_games` (`id_type_game` int(11) NOT NULL AUTO_INCREMENT,`name` varchar(100) NOT NULL,`nbr_player` int(11) NOT NULL,`nbr_points` int(11) NOT NULL,PRIMARY KEY (`id_type_game`))"))
+    if ($bdd->query("CREATE TABLE IF NOT EXISTS `Type_of_games` (`id_type_game` int(11) NOT NULL AUTO_INCREMENT,`name` varchar(100) NOT NULL,`nbr_player` int(11) NOT NULL,`nbr_points` int(11) NOT NULL,PRIMARY KEY (`id_type_game`), UNIQUE (`name`))"))
     	echo "Table type_of_games created successfully.<br />";
     else
     	echo "<span style=\"color: red;\">Error creating table type_of_games</span><br />";
