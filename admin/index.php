@@ -23,7 +23,18 @@ require ('../app/Autoloader.class.php');
 			<div id="membre">
 				<p class="ecrit"><!-- Espace membre -->
                 <?php
+                if (!(array_key_exists("log_admin", $_SESSION)))
+                {
                     include("./inclures/login_admin.php");
+                }
+                else
+                {
+                	?>
+                	<form method="POST" action="./process/deco_admin.php">
+					<input type="submit" name="deco" value="Déconnecter"> 
+					</form>
+					<?php
+                }
                 ?>
                 </p>
 			</div>
@@ -32,19 +43,25 @@ require ('../app/Autoloader.class.php');
 			<div id="content">
 				<p class="ecrit"><!-- Contenu -->
                 <?php
+                if (array_key_exists("log_admin", $_SESSION))
+                {	
                     if (isset($_GET['pg']) && $_GET['pg'] == "list_user")
                         include("./inclures/list_user.php");
                     else if (isset($_GET['pg'])  && $_GET['pg'] == "list_admin")
                         include("./inclures/list_admin.php");
                     else if (isset($_GET['pg'])  && $_GET['pg'] == "create_admin")
                         include("./inclures/create_admin.php");
+                    else if (isset($_GET['pg']) && $_GET['pg'] == "games")
+                        include("./inclures/show_games.php");
+                }
                 ?>
                 </p>
 			</div>
 			<div id="menu">
 				<p class="ecrit"><!-- Menu -->
 					<?php
-					include("./inclures/menu.php");
+					if (array_key_exists("log_admin", $_SESSION))
+						include("./inclures/menu.php");
 					?>
 				</p>
 			</div>

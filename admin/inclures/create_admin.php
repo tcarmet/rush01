@@ -5,7 +5,7 @@
 <br><br>
 
 <label for="email">Email: </label><br>
-<input type="text" name="email" id="Email" required>
+<input type="email" name="email" id="Email" required>
 <br><br>
 
 <label for="Password">Mot de passe: </label><br>

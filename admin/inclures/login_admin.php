@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html>
+
 <form action="./process/pro_login_admin.php" method="POST">
 <label for="login">Login: </label><br>
 <input type="text" name="login" id="login" required>
@@ -10,4 +9,3 @@
 <br><br>
 <input type="submit" name="submit" value="Create">
 </form>
-</html>
