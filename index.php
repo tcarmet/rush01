@@ -34,7 +34,7 @@ require ('app/SwordOfAbsolution.class.php');
 		<div id="general">
 			<div id="content">
 				<p class="ecrit">
-				<?PHP require ("functions/create_table_map.php")?>
+				<?php require ("functions/create_table_map.php"); ?>
 				</p>
 			</div>
 			<div id="menu">
