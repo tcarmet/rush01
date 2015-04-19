@@ -37,11 +37,11 @@ require ('app/SwordOfAbsolution.class.php');
 					include("includes/login_membre.php");
 				else
                 {
-                	?>
+                ?>
                 	<form method="POST" action="./process/deco_user.php">
-					<input type="submit" name="deco" value="Déconnecter"> 
+						<input type="submit" name="deco" value="Déconnecter"> 
 					</form>
-					<div style="float: right; margin-top: -160px; margin-right: 10px;">
+					<div style="float: right; margin-top: -55px; margin-right: 10px;">
 	                	<ul style="list-style-type: none;">
 	                		<li><a href="./admin/index.php">Admin</a></li>
 	                		<li><a href="./chat/index.html" onclick="open('chat/index.html', 'Popup', 'scrollbars=1,resizable=1,height=850,width=850'); return false;">Chat</a></li>
