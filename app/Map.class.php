@@ -29,8 +29,13 @@ class Map {
 		}
 	}
 
-	private function put_object($posX, $posY, $height, $width, $type) {
-		$val = ($type == 'ship') ? 2 : 1;
+	private function put_object($posX, $posY, $height, $width, $type, $id_owner) {
+		if ($type == 'ship' && $id_owner == 1)
+			$val = 2;
+		else if ($type == 'ship' && $id_owner == 2)
+			$val = 3;
+		else if ($type == 'barrier')
+			$val = 1;
 		for ($i = 0; $i < $height; $i++) {
 			for ($j = 0; $j < $width; $j++) {
 				$this->_matrix[$posY + $i][$posX + $j] = $val;
@@ -41,7 +46,7 @@ class Map {
 	public function __construct(array $data) {
 		self::init_matrix();
 		for ($i = 0; isset($data[$i]); $i++) {
-			self::put_object($data[$i]['position_x'], $data[$i]['position_y'], $data[$i]['width'], $data[$i]['lenght'], $data[$i]['type_object']);
+			self::put_object($data[$i]['position_x'], $data[$i]['position_y'], $data[$i]['width'], $data[$i]['lenght'], $data[$i]['type_object'], $data[$i]['id_owner']);
 		}
 	}
 }

@@ -2,6 +2,7 @@
 
 class Ship extends IShip {
 	private $_idship;
+	private $_idusr;
 	private $_name;
 	private $_sprite;
 	private $_maxlife;
@@ -21,6 +22,7 @@ class Ship extends IShip {
 	use Doc;
 
 	public function getID() { return ($this->_idship);}
+	public function getuID() { return ($this->_idusr);}
 	public function getLife() { return ($this->_life);}
 	public function getPosX() { return ($this->_posX);}
 	public function getPosY() { return ($this->_posY);}
@@ -45,6 +47,7 @@ class Ship extends IShip {
 	// Genere un tableau _array avec les positions de tous les pixels du vaisseau
 	public function __construct(array $pos) {
 		$this->_idship = $pos['id'];
+		$this->_idusr = $pos['idusr'];
 		// $x = 0;
 		// for ($i = $this->getPosY(); $i < $this->getPosY() + $this->getSizeY(); $i++) {
 		// 	for ($j = $this->getPosX(); $j < $this->getPosX() + $this->getSizeX(); $j++) {
@@ -74,8 +77,74 @@ class Ship extends IShip {
 		return ;
 	}
 
+	public function shoot(Map $map) {
+		$tb = array();
+		$x = $this->_posX;
+		while ($x < $this->_posX + $this->_sizeY && $x < 150)
+		{
+			$y = $this->_posY - 1;
+			while ($y >= 0)
+			{
+				if ($map->getMapXY($x, $y) != 0)
+				{
+					$tb[] = array('x' => $x, 'y' => $y);
+					break ;
+				}
+				$y--;
+			}
+			$x++;
+		}
+		$x = $this->_posX;
+		while ($x < ($this->_posX + $this->_sizeY) && $x < 150)
+		{
+			$y = $this->_posY + $this->_sizeX;
+			while ($y < 100)
+			{
+				if ($map->getMapXY($x, $y) != 0)
+				{
+					$tb[] = array('x' => $x, 'y' => $y);
+					break ;
+				}
+				$y++;
+			}
+			$x++;
+		}
+		$y = $this->_posY;
+		while ($y < ($this->_posY + $this->_sizeX) && $y < 100)
+		{
+			$x = $this->_posX - 1;
+			while ($x > 0)
+			{
+				if ($map->getMapXY($x, $y) != 0)
+				{
+					$tb[] = array('x' => $x, 'y' => $y);
+					break ;
+				}
+				$x--;
+			}
+			$y++;
+		}
+		$y = $this->_posY;
+		while ($y < ($this->_posY + $this->_sizeX) && $y < 100)
+		{
+			$x = $this->_posX + $this->_sizeY;
+			while ($x < 150)
+			{
+				if ($map->getMapXY($x, $y) != 0)
+				{
+					$tb[] = array('x' => $x, 'y' => $y);
+					break ;
+				}
+				$x++;
+			}
+			$y++;
+		}
+		return ($tb);
+	}
+
 	// Retourne un tableau avec les cases ou l'on peut se deplacer
 	public function find_movement_range(Map $map) {
+		$tb = array();
 		$x = $this->_posX;
 		while ($x < ($this->_posX + $this->_sizeY) && $x < 150)
 		{

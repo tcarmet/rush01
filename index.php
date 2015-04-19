@@ -2,6 +2,8 @@
 session_start();
 
 /* Fichier a include */
+
+$id = 1;
 require ('app/Autoloader.class.php');
 App\Autoloader::register();
 $config = App\Config::getInstance();
@@ -33,9 +35,10 @@ require ('app/SwordOfAbsolution.class.php');
 		</div>
 		<div id="general">
 			<div id="content">
-				<p class="ecrit">
 				<?php require ("functions/create_table_map.php"); ?>
-				</p>
+			<img id="rot" src="./img/rotate.png">
+			<img id="shoot" src="./img/shoot.gif">
+			<script type="text/javascript" src="js/img.js"></script>
 			</div>
 			<div id="menu">
 				<p class="ecrit"><!-- Menu --></p>
