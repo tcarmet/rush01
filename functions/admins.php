@@ -28,10 +28,10 @@
         $password = protect_sql($password, "none");
 
         $password = my_crypt($password, $login);
-        $sql = "SELECT id_admin, login, email, id_ranks FROM `administrators` WHERE login = '".$login."'";
+        $sql = "SELECT * FROM `administrators` WHERE login = '".$login."'";
         if ($data = $bdd2->query_select($sql))
         {
-            if (strcmp($data[0]['password'], $password))
+            if ($data[0]['password'] == $password)
             {
                 $sql_2 = "SELECT * FROM `administrators_ranks` WHERE id_rank = ".$data[0]['id_ranks']."";
                 if ($data_2 = $bdd2->query_select($sql_2))

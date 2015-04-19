@@ -2,7 +2,7 @@
 session_start();
 
 /* Fichier a include */
-require ('../app/Autoloader.class.php');
+	require ('../app/Autoloader.class.php');
 	App\Autoloader::register();
 	$config = App\Config::getInstance();
 
@@ -53,6 +53,8 @@ require ('../app/Autoloader.class.php');
                         include("./inclures/create_admin.php");
                     else if (isset($_GET['pg']) && $_GET['pg'] == "games")
                         include("./inclures/show_games.php");
+                    else if (isset($_GET['pg']) && $_GET['pg'] == "create_game")
+                        include("./inclures/create_game.php");
                 }
                 ?>
                 </p>

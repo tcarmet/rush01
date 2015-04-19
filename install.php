@@ -103,17 +103,14 @@
         echo "Insert into type_of_games is good.<br />";
     else
         echo "<span style=\"color: red;\">Error when insert into type_of_games</span><br />";
-
-    if ($bdd->query("INSERT INTO `Administrators` VALUES ('', 'root', 'root@W42K.com', 'root', '1')"))
-        echo "Insert into administrators is good.<br />";
-    else
-        echo "<span style=\"color: red;\">Error when insert into administrators</span><br />";
+    
+    create_admin($bdd, "root", "root@W42K.fr", "root", '1');
 
     // if ($bdd->query("INSERT INTO `Players` VALUES ('', 'root', 'root@W42K.com', 'root', 0, 2), ('', 'tcarmet', 'tcarmet@W42K.com', '123456', 0, 2)"))
     //     echo "Insert into players is good.<br />";
     // else
     //     echo "<span style=\"color: red;\">Error when insert into players</span><br />";
 
-    create_user($bdd, "tcoppin", "tcoppin@student.42.fr", "qwerty");
-    create_user($bdd, "tcarmet", "tcarmet@student.42.fr", "123456");
+    // create_user($bdd, "tcoppin", "tcoppin@student.42.fr", "qwerty");
+    // create_user($bdd, "tcarmet", "tcarmet@student.42.fr", "123456");
 ?>

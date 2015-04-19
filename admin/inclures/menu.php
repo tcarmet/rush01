@@ -1,16 +1,17 @@
-<ul> Utilisateur </ul>
-<a href="./index.php?pg=list_user"><li>Liste des utilisateurs</li></a>
+<ul> Utilisateur <br />
+<li><a href="./index.php?pg=list_user">Liste des utilisateurs</a></li>
 <br/>
-<ul> Faction et Vaisseau </ul>
-<a href="./index.php?pg=add_faction"><li>Ajouter une faction</li></a>
+Faction et Vaisseau <br />
+<li><a href="./index.php?pg=add_faction">Ajouter une faction</a></li>
 <br/>
-<a href="./index.php?pg=add_ship"><li>Ajouter un vaisseau</li></a>
+<li><a href="./index.php?pg=add_ship">Ajouter un vaisseau</a></li>
 <br/>
-<ul>Parties</ul>
-<a href="./index.php?pg=games"><li>Parties en cours</li></a>
+Parties<br />
+<li><a href="./index.php?pg=create_game">Créer une partie</a></li>
+<li><a href="./index.php?pg=games">Parties en cours</a></li>
 <br/>
-<ul>Admin</ul>
-<a href="./index.php?pg=list_admin"><li>Liste admin</li></a>
-<a href="./index.php?pg=create_admin"><li>creer admin</li></a>
-<br/>
+Admin<br />
+<li><a href="./index.php?pg=list_admin">Liste admin</a></li>
+<li><a href="./index.php?pg=create_admin">creer admin</a></li>
+</ul>
  
