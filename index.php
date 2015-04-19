@@ -4,7 +4,6 @@ session_start();
 /* Fichier a include */
 
 $id = 1;
-// $_SESSION['id_user'] = 1;
 require ('app/Autoloader.class.php');
 App\Autoloader::register();
 $config = App\Config::getInstance();
