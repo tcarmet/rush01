@@ -159,6 +159,36 @@
 			return 0;
 	}
 
+	function select_game_for_player($bdd2, $id_player)
+	{
+		$sql = "SELECT id_game FROM `play_in` WHERE id_player = '".$id_player."'";
+		if ($data = $bdd2->query_select($sql))
+		{
+			foreach ($data as $key => $value)
+			{
+				$sql2 = "SELECT * FROM `games` WHERE id_game = '".$data[0]['id_game']."'";
+				if ($data2 = $bdd2->query_select($sql2))
+				{
+					if ($data2[0]['state'] == "En cours")
+						return $data2[0]['id_game'];
+				}
+			}
+			return 0;
+		}
+		else
+			return 0;
+	}
+
+	function update_game($bdd2, $id_game){
+		$id_game = protect_sql($id_game, "intval");
+
+		$sql = "UPDATE `games` SET state = 'Finie' WHERE id_game = ".$id_game."";
+		if ($bdd2->query($sql))
+	        return 1;
+        else
+        	return 0;
+	}
+
 	/*
 	** MOVE ON MAP
 	*/

@@ -1,25 +1,4 @@
 <?php
-// create_game($bdd, "Test", 1, 1);
-// GENERATE BARRIER
-// for ($i = 0; $i < 10; $i++) {
-// 	insert_into_map($bdd, 1, 'barrier',
-// 		mt_rand(0, 150), mt_rand(0, 100), mt_rand(3, 15), mt_rand(3, 15), 0);
-// }
-// insert_into_map($bdd, 1, 'ship', 1, 1, 10, 8, 1);
-// insert_into_map($bdd, 1, 'ship', 50, 50, 7, 2, 2);
-
-
-//	/!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\
-//			POUR THOMAS :
-//	FAIRE EN SORTE QUE LES id_user SOIENT STOCKÉS DANS LA SESSION !!!!
-
-// $_SESSION['id_user'] = 1;
-// $_SESSION['id_user'] = 2;
-
-//	/!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\
-
-
-
 if (!isset($bdd))
 {
 	session_start();
@@ -39,12 +18,23 @@ if (!isset($bdd))
 	require ('../app/SwordOfAbsolution.class.php');
 }
 
-$data = select_all_into_map($bdd, 1);
+$id_game = select_game_for_player($bdd, $_SESSION['id_user']);
+$data = select_all_into_map($bdd, $id_game);
 $map = New Map($data);
 for ($i = 0; isset($data[$i]); $i++) {
-	if ($data[$i]['type_object'] == 'ship')
+	if ($data[$i]['type_object'] == 'ship'){
 		$ships[] = new HonorableDuty(array('x' => $data[$i]['position_x'], 'y' => $data[$i]['position_y'],
 			'id' => $data[$i]['id_object'], 'sY' => $data[$i]['lenght'], 'sX' => $data[$i]['width'], 'idusr' => $data[$i]['id_owner']));
+		$nb_ship += 1;
+	}
+}
+
+if ($nb_ship == 1)
+{
+	delete_map($bdd, $id_game);
+	delete_event($bdd, $id_game);
+	update_game($bdd2, $id_game);
+	die();
 }
 
 if (array_key_exists('pos', $_GET))
@@ -125,9 +115,6 @@ if (isset($up))
 				'id' => $data[$i]['id_object'], 'sY' => $data[$i]['lenght'], 'sX' => $data[$i]['width'], 'idusr' => $data[$i]['id_owner']));
 	}
 }
-// echo "::".$ships[0]->getSizeX()." :: ".$ships[0]->getSizeY()."::";
-// insert_into_map($bdd, 1, 'ship', $ships[0]->getPosX(), $ships[0]->getPosY(), $ships[0]->getSizeX(), $ships[0]->getSizeY(), 1);
-
 
 function is_available($tb, $y, $x)
 {
