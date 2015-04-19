@@ -34,9 +34,8 @@ if ($nb_ship == 1)
 	delete_map($bdd, $id_game);
 	delete_event($bdd, $id_game);
 	update_game($bdd2, $id_game);
-	die();
 }
-
+else{
 if (array_key_exists('pos', $_GET))
 {
 	$tb = explode('_', $_GET['pos']);
@@ -157,6 +156,7 @@ for ($i = 0; $i < Map::HEIGHT; $i++) {
 	echo "</tr>";
 }
 echo "</table>";
+}
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
