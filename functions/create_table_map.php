@@ -45,7 +45,7 @@ if (array_key_exists('pos', $_GET))
 		if ($ship->getuID() == $_SESSION['id_user'])
 		{
 			$ship->setPosXY($tb[1], $tb[0]);
-			update_map($bdd, 1, $ship->getID(), $ship->getPosX(), $ship->getPosY(), $ship->getSizeX(), $ship->getSizeY());
+			update_map($bdd, $id_game, $ship->getID(), $ship->getPosX(), $ship->getPosY(), $ship->getSizeX(), $ship->getSizeY());
 			$up = 1;
 		}
 	}
