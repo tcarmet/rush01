@@ -1,5 +1,7 @@
 <- Config ----------------------------------------------------------------------
 
-The Config class 
+The Config class get the information of the database, into the config file.
+
+and return all the information into an array.
 
 ---------------------------------------------------------------------- Config ->
