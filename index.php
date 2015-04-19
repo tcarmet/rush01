@@ -31,12 +31,18 @@ require ('app/SwordOfAbsolution.class.php');
 		<div id="header">
 			<p class="ecrit"><!-- Contenu du Header --></p>
 			<div id="membre">
-				<p class="ecrit"><!-- Espace membre --></p>
+				<p class="ecrit">
+				<?php
+					if(!isset($_SESSION['id_user']))
+						include("includes/login_membre.php");
+				?>
+				<!-- Espace membre --></p>
 			</div>
 		</div>
 		<div id="general">
 			<div id="content">
-				<?php require ("functions/create_table_map.php"); ?>
+				<?php if (isset($_SESSION['id_user']))
+						require ("functions/create_table_map.php");?>
 			<img id="rot" src="./img/rotate.png">
 			<img id="shoot" src="./img/shoot.gif">
 			<script type="text/javascript" src="js/img.js"></script>
