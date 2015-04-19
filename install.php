@@ -89,6 +89,16 @@
     else
     	echo "<span style=\"color: red;\">Error creating table play_in</span><br />";
 
+    if ($bdd->query("CREATE TABLE `webchat_lines` (`id` int(10) unsigned NOT NULL auto_increment,`author` varchar(16) NOT NULL,`gravatar` varchar(32) NOT NULL,`text` varchar(255) NOT NULL,`ts` timestamp NOT NULL default CURRENT_TIMESTAMP,PRIMARY KEY (`id`),KEY `ts` (`ts`)) ENGINE=InnoDB DEFAULT CHARSET=utf8"))
+        echo "Table play_in created successfully.<br />";
+    else
+        echo "<span style=\"color: red;\">Error creating table play_in</span><br />";
+
+    if ($bdd->query("CREATE TABLE `webchat_users` (`id` int(10) unsigned NOT NULL auto_increment,`name` varchar(16) NOT NULL,`gravatar` varchar(32) NOT NULL,`last_activity` timestamp NOT NULL default CURRENT_TIMESTAMP,PRIMARY KEY (`id`),UNIQUE KEY `name` (`name`),KEY `last_activity` (`last_activity`)) ENGINE=InnoDB  DEFAULT CHARSET=utf8"))
+        echo "Table play_in created successfully.<br />";
+    else
+        echo "<span style=\"color: red;\">Error creating table play_in</span><br />";
+
     if ($bdd->query("INSERT INTO `Administrators_ranks` VALUES ('', 'Dieu'), ('', 'Prophette'), ('', 'Ange')"))
     	echo "Insert into administrators_ranks is good.<br />";
     else
