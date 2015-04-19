@@ -7,7 +7,7 @@
     $sql = "CREATE DATABASE IF NOT EXISTS `Rush01`";
     mysqli_query($conn, $sql);
     $bdd = App\database\Database::getInstance_bdd($config->get("db_name"), $config->get("db_user"), $config->get("db_pass"), $config->get("db_host"));
-    require ('functions/funtcions.php');
+    require ('./functions/functions.php');
     
     if ($bdd->query("CREATE TABLE IF NOT EXISTS `Players` (`id_player` int(11) NOT NULL AUTO_INCREMENT,`login` varchar(50) NOT NULL,`email` varchar(255) NOT NULL,`password` text NOT NULL,`nbr_points` int(11) NOT NULL DEFAULT 0,`status` enum('0', '1', '2') NOT NULL DEFAULT 2,PRIMARY KEY (`id_player`), UNIQUE (`login`), UNIQUE (`email`))"))
     	echo "Table players created successfully.<br />";
