@@ -38,7 +38,7 @@
 		$id = protect_sql($id, "intval");
 
 		$name = $id_game."_event_game";
-		$sql = "CREATE TABLE IF NOT EXISTS `".$name."` (`id_event` int(11) NOT NULL AUTO_INCREMENT, `message` text NOT NULL, date_hour datetime NOT NULL, id_player int(11) NOT NULL, PRIMARY KEY (`id_event`))";
+		$sql = "CREATE TABLE IF NOT EXISTS `".$name."` (`id_event` int(11) NOT NULL AUTO_INCREMENT, `message` text NOT NULL, `date_hour` datetime NOT NULL, `id_player` int(11) NOT NULL, PRIMARY KEY (`id_event`))";
 		if ($bdd2->query($sql))
 			return 1;
 		else
@@ -80,8 +80,16 @@
 	    		$sql2 = "INSERT INTO `play_in` VALUES ('".$id_creator."', '".$last_id."', '".$type[0]['nbr_points']."', '1')";
 	    		if ($bdd2->query($sql2))
 	        	{
-	        		if (create_map($bdd2, $last_id) && create_event_table($bdd2, $last_id))
-	    				return $last_id;
+	        		if (create_map($bdd2, $last_id))
+	        		{
+	        			if (create_event_table($bdd2, $last_id))
+	    					return $last_id;
+	    				else
+	    				{
+	    					delete_map($bdd2, $last_id);
+	    					return 0;
+	    				}
+	    			}
 	    			else
 	    				return 0;
 	    		}
@@ -182,7 +190,7 @@
 		$id_object = protect_sql($id_object, "intval");
 
 		$name = $id_game."_map_game";
-		$sql = "DELETE FROM `".$name."` WHERE id_object=\"".$id_object."\""	;
+		$sql = "DELETE FROM `".$name."` WHERE id_object='".$id_object."'";
 		if ($bdd2->query($sql))
 	        return 1;
         else
@@ -205,7 +213,7 @@
 		$id_object = protect_sql($id_object, "intval");
 
 		$name = $id_game."_map_game";
-		$sql = "SELECT * FROM `".$name."` WHERE id_object = ".$id_object."";
+		$sql = "SELECT * FROM `".$name."` WHERE id_object ='".$id_object."'";
 		if ($data = $bdd2->query_select($sql))
 	        return $data[0];
         else
