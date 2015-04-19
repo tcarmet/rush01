@@ -173,7 +173,6 @@
 						return $data2[0]['id_game'];
 				}
 			}
-			echo "toto";
 			return 0;
 		}
 		else

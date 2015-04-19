@@ -136,6 +136,15 @@ foreach ($ships as $ship)
 	}
 }
 
+if ($_SESSION['id_user'] == 1) {
+	echo "You are red.";
+}
+
+if ($_SESSION['id_user'] == 2) {
+	echo "You are black.";
+}
+
+
 echo "<table id='mapclick'>";
 for ($i = 0; $i < Map::HEIGHT; $i++) {
 	echo "<tr>";
