@@ -32,10 +32,6 @@ for ($i = 0; isset($data[$i]); $i++) {
 
 if ($nb_ship == 1)
 {
-	if ($ships[0]['id_owner'] == 1)
-		echo "RED WINS.";
-	else
-		echo "BLACK WINS";
 	delete_map($bdd, $id_game);
 	delete_event($bdd, $id_game);
 	update_game($bdd, $id_game);
