@@ -49,12 +49,14 @@ require ('app/SwordOfAbsolution.class.php');
 		<div id="general">
 			<div id="content">
 				<?php if (isset($_SESSION['id_user']))
+					{
 						require ("functions/create_table_map.php");
+						echo "<img id=\"rot\" src=\"./img/rotate.png\">";
+						echo "<img id=\"shoot\" src=\"./img/shoot.gif\">";
+					}
 					else if (!isset($_SESSION['id_user']))
 						require ("includes/create_user.php");
-						?>
-			<img id="rot" src="./img/rotate.png">
-			<img id="shoot" src="./img/shoot.gif">
+					?>
 			<script type="text/javascript" src="js/img.js"></script>
 			</div>
 			<div id="menu">
@@ -66,8 +68,5 @@ require ('app/SwordOfAbsolution.class.php');
 			</div>
 		</div>
 	</div>
-<?php
-?>
-
 </body>
 </html>
