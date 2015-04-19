@@ -19,7 +19,7 @@ if (!isset($bdd))
 }
 
 $id_game = select_game_for_player($bdd, $_SESSION['id_user']);
-$data = select_all_into_map($bdd, $id_game);
+$data = select_all_into_map($bdd, 1);
 $map = New Map($data);
 for ($i = 0; isset($data[$i]); $i++) {
 	if ($data[$i]['type_object'] == 'ship'){
@@ -31,9 +31,9 @@ for ($i = 0; isset($data[$i]); $i++) {
 
 if ($nb_ship == 1)
 {
-	delete_map($bdd, $id_game);
-	delete_event($bdd, $id_game);
-	update_game($bdd, $id_game);
+	delete_map($bdd, 1);
+	delete_event($bdd, 1);
+	update_game($bdd, 1);
 }
 else{
 if (array_key_exists('pos', $_GET))
@@ -75,7 +75,7 @@ if (array_key_exists('action', $_GET))
 			if ($ship->getuID() == $_SESSION['id_user'])
 			{
 				$ship->rotate();
-				update_map($bdd, $id_game, $ship->getID(), $ship->getPosX(), $ship->getPosY(), $ship->getSizeX(), $ship->getSizeY());
+				update_map($bdd, 1, $ship->getID(), $ship->getPosX(), $ship->getPosY(), $ship->getSizeX(), $ship->getSizeY());
 				$up = 1;
 			}
 		}
@@ -95,7 +95,7 @@ if (array_key_exists('action', $_GET))
 					foreach ($data as $d)
 					{
 						if ($d['position_x'] == $tab['x'] && $d['position_y'] == $tab['y'])
-							delete_into_map($bdd, $id_game, $d['id_object']);
+							delete_into_map($bdd, 1, $d['id_object']);
 					}
 				}
 				$up = 1;
@@ -106,7 +106,7 @@ if (array_key_exists('action', $_GET))
 
 if (isset($up))
 {
-	$data = select_all_into_map($bdd, $id_game);
+	$data = select_all_into_map($bdd, 1);
 	$map = New Map($data);
 	for ($i = 0; isset($data[$i]); $i++) {
 		if ($data[$i]['type_object'] == 'ship')
