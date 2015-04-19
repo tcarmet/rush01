@@ -80,7 +80,7 @@
 		$id_type = protect_sql($id_type, "intval");
 		$id_creator = protect_sql($id_creator, "intval");
 
-		$sql = "INSERT INTO `games` VALUES ('', '".$name."', NOW(), ".$id_type.", 'En attente de Joueurs')";
+		$sql = "INSERT INTO `games` VALUES ('', '".$name."', NOW(), ".$id_type.", 'En cours')";
         if ($bdd2->query($sql))
         {
     		$last_id = $bdd2->last_id();
