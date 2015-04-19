@@ -33,8 +33,18 @@ require ('app/SwordOfAbsolution.class.php');
 			<div id="membre">
 				<p class="ecrit">
 				<?php
-					if(!isset($_SESSION['id_user']))
-						include("includes/login_membre.php");
+				if(!isset($_SESSION['id_user']))
+					include("includes/login_membre.php");
+				else
+                {
+                	?>
+                	<form method="POST" action="./process/deco_user.php">
+					<input type="submit" name="deco" value="Déconnecter"> 
+					</form>
+					<?php
+                }
+                ?>
+
 				?>
 				<!-- Espace membre --></p>
 			</div>
@@ -42,7 +52,10 @@ require ('app/SwordOfAbsolution.class.php');
 		<div id="general">
 			<div id="content">
 				<?php if (isset($_SESSION['id_user']))
-						require ("functions/create_table_map.php");?>
+						require ("functions/create_table_map.php");
+					else if (!isset($_SESSION['id_user']))
+						require ("includes/create_user.php");
+						?>
 			<img id="rot" src="./img/rotate.png">
 			<img id="shoot" src="./img/shoot.gif">
 			<script type="text/javascript" src="js/img.js"></script>
