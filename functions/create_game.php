@@ -9,10 +9,10 @@
 
 	create_game($bdd, "Test", 1, 1);
 
-	// for ($i = 0; $i < 10; $i++) {
-	// 	insert_into_map($bdd, 1, 'barrier',
-	// 		mt_rand(0, 150), mt_rand(0, 100), mt_rand(3, 15), mt_rand(3, 15), 0);
-	// }
+	for ($i = 0; $i < 10; $i++) {
+		insert_into_map($bdd, 1, 'barrier',
+			mt_rand(0, 150), mt_rand(0, 100), mt_rand(3, 15), mt_rand(3, 15), 0);
+	}
 
 	insert_into_map($bdd, 1, 'ship', 1, 1, 10, 8, 1, 1);
 	insert_into_map($bdd, 1, 'ship', 141, 89, 10, 8, 2, 1);
