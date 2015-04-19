@@ -1,6 +1,7 @@
 <?PHP
 
 class Ship extends IShip {
+	private $_idship;
 	private $_name;
 	private $_sprite;
 	private $_maxlife;
@@ -19,6 +20,7 @@ class Ship extends IShip {
 
 	use Doc;
 
+	public function getID() { return ($this->_idship);}
 	public function getLife() { return ($this->_life);}
 	public function getPosX() { return ($this->_posX);}
 	public function getPosY() { return ($this->_posY);}
@@ -42,13 +44,14 @@ class Ship extends IShip {
 
 	// Genere un tableau _array avec les positions de tous les pixels du vaisseau
 	public function __construct(array $pos) {
-		$x = 0;
-		for ($i = $this->getPosY(); $i < $this->getPosY() + $this->getSizeY(); $i++) {
-			for ($j = $this->getPosX(); $j < $this->getPosX() + $this->getSizeX(); $j++) {
-				$this->_array[$x]['x'] = $j; $this->_array[$x]['y'] = $i;
-				$x++;
-			}
-		}
+		$this->_idship = $pos['id'];
+		// $x = 0;
+		// for ($i = $this->getPosY(); $i < $this->getPosY() + $this->getSizeY(); $i++) {
+		// 	for ($j = $this->getPosX(); $j < $this->getPosX() + $this->getSizeX(); $j++) {
+		// 		$this->_array[$x]['x'] = $j; $this->_array[$x]['y'] = $i;
+		// 		$x++;
+		// 	}
+		// }
 	}
 	public function repair(Dice $dice) {
 		if ($_pp <= 0)
@@ -63,18 +66,74 @@ class Ship extends IShip {
 	}
 
 	public function rotate() {
-		$x = 0;
-		for ($i = $this->getPosY(); $i < $this->getPosY() + $this->getSizeX(); $i++) {
-			for ($j = $this->getPosX(); $j < $this->getPosX() + $this->getSizeY(); $j++) {
-				$this->_array[$x]['x'] = $j; $this->_array[$x]['y'] = $i;
-				$x++;
-			}
-		}
+		$tmp = $this->_sizeX;
+		$this->_sizeX = $this->_sizeY;
+		$this->_sizeY = $tmp;
+		$this->_posX += ($this->_sizeX / 2) - ($this->_sizeY / 2) + ($this->_sizeY % 2);
+		$this->_posY += ($this->_sizeY / 2) - ($this->_sizeX / 2) + ($this->_sizeX % 2);
+		return ;
 	}
 
 	// Retourne un tableau avec les cases ou l'on peut se deplacer
-	public function find_movement_range() {
+	public function find_movement_range(Map $map) {
+		$x = $this->_posX;
+		while ($x < ($this->_posX + $this->_sizeY) && $x < 150)
+		{
+			$y = $this->_posY - 1;
+			while ($y >= 0 && $y >= ($this->_posY - $this->_speed))
+			{
+				if ($map->getMapXY($x, $y) == 0)
+					$tb[] = array('x' => $x, 'y' => $y);
+				else
+					break ;
+				$y--;
+			}
+			$x++;
+		}
+		$x = $this->_posX;
+		while ($x < ($this->_posX + $this->_sizeY) && $x < 150)
+		{
+			$y = $this->_posY + $this->_sizeX;
+			while ($y <= ($this->_posY + $this->_sizeX + $this->_speed))
+			{
+				if ($map->getMapXY($x, $y) == 0)
+					$tb[] = array('x' => $x, 'y' => $y);
+				else
+					break ;
+				$y++;
+			}
 
+			$x++;
+		}
+		$y = $this->_posY;
+		while ($y < ($this->_posY + $this->_sizeX) && $y < 100)
+		{
+			$x = $this->_posX - 1;
+			while ($x >= 0 && $x >= ($this->_posX - $this->_speed))
+			{
+				if ($map->getMapXY($x, $y) == 0)
+					$tb[] = array('x' => $x, 'y' => $y);
+				else
+					break ;
+				$x--;
+			}
+			$y++;
+		}
+		$y = $this->_posY;
+		while ($y < ($this->_posY + $this->_sizeX) && $y < 100)
+		{
+			$x = $this->_posX + $this->_sizeY;
+			while ($x <= ($this->_posX + $this->_sizeY + $this->_speed) && $x < 150)
+			{
+				if ($map->getMapXY($x, $y) == 0)
+					$tb[] = array('x' => $x, 'y' => $y);
+				else
+					break ;
+				$x++;
+			}
+			$y++;
+		}
+		return ($tb);
 	}
 }
 ?>

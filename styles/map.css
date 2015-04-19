@@ -1,10 +1,13 @@
-table {
+/*table {
 	position: absolute;
-	left: 20%;
+	left: 1%;
+	right: 1%;
 }
-
-tr, td {
+*/
+td {
 	border-style: solid;
 	border-width: 1px;
-	padding: 3px;
+	width: 10px;
+	height: 10px;
 }
+

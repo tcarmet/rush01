@@ -111,7 +111,7 @@
 					if ($bdd2->query($sql2))
 						return 1;
 					else
-						return 0;					
+						return 0;
 				}
 			}
 			else
@@ -162,14 +162,15 @@
         	return 0;
 	}
 
-	function update_map($bdd2, $id_game, $id_object, $position_x, $position_y){
+	function update_map($bdd2, $id_game, $id_object, $position_x, $position_y, $width, $lenght){
 		$id_game = protect_sql($id_game, "intval");
 		$id_object = protect_sql($id_object, "intval");
 		$position_x = protect_sql($position_x, "intval");
 		$position_y = protect_sql($position_y, "intval");
 
 		$name = $id_game."_map_game";
-		$sql = "UPDATE `".$name."` SET position_x = ".$position_x.", position_y = ".$position_y." WHERE id_object = ".$id_object."";
+		$sql = "UPDATE `".$name."` SET position_x = ".$position_x.", position_y = ".$position_y. ", width = " . $width .
+		 ", lenght = " . $lenght . " WHERE id_object = ".$id_object."";
 		if ($bdd2->query($sql))
 	        return 1;
         else
@@ -181,7 +182,7 @@
 		$id_object = protect_sql($id_object, "intval");
 
 		$name = $id_game."_map_game";
-		$sql = "DELETE FROM `".$name."` WHERE ".$id_object."";
+		$sql = "DELETE FROM `".$name."` WHERE id_object=\"".$id_object."\""	;
 		if ($bdd2->query($sql))
 	        return 1;
         else
