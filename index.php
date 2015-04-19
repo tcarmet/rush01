@@ -44,8 +44,6 @@ require ('app/SwordOfAbsolution.class.php');
 					<?php
                 }
                 ?>
-
-				?>
 				<!-- Espace membre --></p>
 			</div>
 		</div>
@@ -55,7 +53,7 @@ require ('app/SwordOfAbsolution.class.php');
 						require ("functions/create_table_map.php");
 					else if (!isset($_SESSION['id_user']))
 						require ("includes/create_user.php");
-						?>
+				?>
 			<img id="rot" src="./img/rotate.png">
 			<img id="shoot" src="./img/shoot.gif">
 			<script type="text/javascript" src="js/img.js"></script>
