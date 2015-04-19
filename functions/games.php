@@ -166,13 +166,14 @@
 		{
 			foreach ($data as $key => $value)
 			{
-				$sql2 = "SELECT * FROM `games` WHERE id_game = '".$data[0]['id_game']."'";
+				$sql2 = "SELECT * FROM `games` WHERE id_game = '".$data[$key]['id_game']."'";
 				if ($data2 = $bdd2->query_select($sql2))
 				{
 					if ($data2[0]['state'] == "En cours")
 						return $data2[0]['id_game'];
 				}
 			}
+			echo "toto";
 			return 0;
 		}
 		else

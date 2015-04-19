@@ -18,6 +18,7 @@ if (!isset($bdd))
 	require ('../app/SwordOfAbsolution.class.php');
 }
 
+$nb_ship = 0;
 $id_game = select_game_for_player($bdd, $_SESSION['id_user']);
 $data = select_all_into_map($bdd, $id_game);
 $map = New Map($data);
