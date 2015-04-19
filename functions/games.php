@@ -154,16 +154,17 @@
 	/*
 	** MOVE ON MAP
 	*/
-	function insert_into_map($bdd2, $id_game, $type, $position_x, $position_y, $width, $lenght, $id_owner){
+	function insert_into_map($bdd2, $id_game, $type, $position_x, $position_y, $width, $lenght, $id_owner, $id_ship){
 		$type = protect_sql($type, "none");
 		$position_x = protect_sql($position_x, "intval");
 		$position_y = protect_sql($position_y, "intval");
 		$width = protect_sql($width, "intval");
 		$lenght = protect_sql($lenght, "intval");
 		$id_owner = protect_sql($id_owner, "intval");
+		$id_ship = protect_sql($id_ship, "intval");
 
 		$name = $id_game."_map_game";
-		$sql = "INSERT INTO `".$name."` VALUES ('', '".$type."', '".$position_x."', '".$position_y."', '".$width."', '".$lenght."', '".$id_owner."')";
+		$sql = "INSERT INTO `".$name."` VALUES ('', '".$type."', '".$position_x."', '".$position_y."', '".$width."', '".$lenght."', '".$id_owner."', '".$id_ship."')";
 		if ($bdd2->query($sql))
 	        return $bdd2->last_id();
         else
