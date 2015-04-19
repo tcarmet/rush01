@@ -1,0 +1,28 @@
+<- Ship ----------------------------------------------------------------------
+The Ship class is the parent class of a ship.
+
+
+an array is given to the class with the current position of the ship
+
+getuID
+will get the id of the ship
+
+getLife
+will get the life of the ship
+
+getPosX
+get posX will get the X postion of the ship
+
+getPosY
+get posY will get the Y postion of the ship
+
+getSizeX
+get the SIZE X of the ship
+
+getSizeY
+get the SIZE Y of the ship
+
+setPosXY
+will set the position of the ship
+
+---------------------------------------------------------------------- Ship ->

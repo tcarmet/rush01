@@ -1,0 +1,6 @@
+<- Dice ----------------------------------------------------------------------
+
+The Dice class will get the number of dice we need to throw and will
+return a array with the result of each dice.
+
+---------------------------------------------------------------------- Dice ->

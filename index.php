@@ -31,6 +31,7 @@ require ('app/SwordOfAbsolution.class.php');
 			<p class="ecrit"><!-- Contenu du Header --></p>
 			<div id="membre">
 				<p class="ecrit">
+				<!-- Espace membre -->
 				<?php
 				if(!isset($_SESSION['id_user']))
 					include("includes/login_membre.php");
@@ -43,12 +44,14 @@ require ('app/SwordOfAbsolution.class.php');
 					<?php
                 }
                 ?>
-				<!-- Espace membre --></p>
+                <a href="./admin/index.php">admin</a>
+				</p>
 			</div>
 		</div>
 		<div id="general">
 			<div id="content">
-				<?php if (isset($_SESSION['id_user']))
+				<?php 
+				if (isset($_SESSION['id_user']))
 					{
 						require ("functions/create_table_map.php");
 						echo "<img id=\"rot\" src=\"./img/rotate.png\">";

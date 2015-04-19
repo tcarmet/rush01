@@ -1,0 +1,17 @@
+<- Database ----------------------------------------------------------------------
+
+This is the class of the Database.
+
+getPDO
+This class will give the access to the Database.
+
+query
+execute action into the database.
+
+query_select
+can select into the database.
+
+last_id
+recuperate the id of the last line that was inserted into the database.
+
+---------------------------------------------------------------------- Database ->

@@ -1,0 +1,7 @@
+<- IShip ----------------------------------------------------------------------
+IShip is the interface of the SHIP class.
+
+it contains all the function and var that will be use into the 
+SHIP class.
+
+---------------------------------------------------------------------- IShip ->

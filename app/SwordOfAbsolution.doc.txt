@@ -1,0 +1,10 @@
+<- SwordOfAbsolution ----------------------------------------------------------------------
+
+
+SwordOfAbsolution extends from ship.
+
+an array is given with the position wanted of the ship.
+
+it will create a ship with the spec demanded.
+
+---------------------------------------------------------------------- SwordOfAbsolution ->

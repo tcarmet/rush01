@@ -1,0 +1,17 @@
+<- Map ----------------------------------------------------------------------
+The map class will create the map.
+
+the 150x100 scale is given to the map.
+
+an array is given to the map with the objects that we will use in the
+game. Like ships barrier etc...
+
+the construct will put the object into the map.
+
+setmapXY
+this function will set into the map the object. it will return FALSE
+when the position given is bigger than the size of the map.
+
+getmapXY
+will return the position X Y of the map.
+---------------------------------------------------------------------- Map ->
