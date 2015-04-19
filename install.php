@@ -109,10 +109,10 @@
     else
         echo "<span style=\"color: red;\">Error when insert into administrators</span><br />";
 
-    if ($bdd->query("INSERT INTO `Players` VALUES ('', 'root', 'root@W42K.com', 'root', 0, 2), ('', 'tcarmet', 'tcarmet@W42K.com', '123456', 0, 2)"))
-        echo "Insert into players is good.<br />";
-    else
-        echo "<span style=\"color: red;\">Error when insert into players</span><br />";
+    // if ($bdd->query("INSERT INTO `Players` VALUES ('', 'root', 'root@W42K.com', 'root', 0, 2), ('', 'tcarmet', 'tcarmet@W42K.com', '123456', 0, 2)"))
+    //     echo "Insert into players is good.<br />";
+    // else
+    //     echo "<span style=\"color: red;\">Error when insert into players</span><br />";
 
     create_user($bdd, "tcoppin", "tcoppin@student.42.fr", "qwerty");
     create_user($bdd, "tcarmet", "tcarmet@student.42.fr", "123456");
